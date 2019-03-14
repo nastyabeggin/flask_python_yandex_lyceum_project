@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Приложение</a>
+          {% if username in admins or show == 1 %}
+                        <a class="navbar-brand" href="/">Просмотр всех заметок</a>
+                        <a class="navbar-brand" href="/all_books">Все книги</a>
+                        <a class="navbar-brand" href="/add_news/none">Добавить заметку</a>
+                        <a class="navbar-brand" href="/site_users">Пользователи сайта</a>
+                        <a class="navbar-brand" href="/upload">Добавить книгу</a>
+          {% else %}
+                {% if "username" in session %}
+                        <a class="navbar-brand" href="/">Просмотр своих заметок</a>
+                         <a class="navbar-brand" href="/all_books">Все книги</a>
+                        <a class="navbar-brand" href="/add_news/none">Добавить заметку</a>
+                {% endif %}
+          {% endif %}
+            {% if "username" in session %}
+                         <a class="navbar-brand" href="/logout">Выйти из {{session['username']}}</a>
+           {% endif %}
+
+      </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+        {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

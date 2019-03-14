@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<!--   <form name="search"  action="/cgi-bin/main.py" method="get">
+# <select name="sorting"  class="selectpicker form-control">
+#   <option>По названию произведения</option>
+#   <option>По названию заметки</option>
+#   <option>По дате добавления(новые вверх)</option>
+#   <option>По дате добавления(старые вверх)</option>
+# </select>
+# <button  type="submit"  class="btn btn-info">Сортировать</button>
+# </form>
+-->
+{% if username in admins %}
+    {% for item in news %}
+{% if item in adm_n %}
+<div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">{{item[2]}}</h4>
+            <p>{{item[3]}}</p>
+        <h6 style="color:blue">Своя новость</h6>
+              <hr>
+            <p class="mb-0">{{item[1]}}</p>
+            <a href="/delete_news/{{item[0]}}">Удалить заметку</a>
+        </div>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">{{item[2]}}</h4>
+            <p>{{item[3]}}</p>
+    <h6 style="color:blue">USER ID: {{item[4]}} </h6>
+              <hr>
+            <p class="mb-0">{{item[1]}}</p>
+            <a href="/delete_news/{{item[0]}}">Удалить заметку</a>
+        </div>
+{% endif %}
+    {% endfor %}
+{% else %}
+    {% for item in news %}
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">{{item[2]}}</h4>
+             <p>{{item[3]}}</p>
+              <hr>
+             <p class="mb-0">{{item[1]}}</p>
+            <a href="/delete_news/{{item[0]}}">Удалить заметку</a>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

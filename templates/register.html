@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Регистрация</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        {% if error == 1 %}
+            <h4 style="color:red"> Данный логин уже занят</h4>
+        {% endif %}
+
+
+        <p>
+            {{ form.user_name.label }}<br>
+            {{ form.user_name }}<br>
+            {% for error in form.user_name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password }}<br>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.submit() }} <strong> <a href="/login" style="color:black">Я уже зарегистрирован(а)</a></strong></p>
+    </form>
+
+{% endblock %}

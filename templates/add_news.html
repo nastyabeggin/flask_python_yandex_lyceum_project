@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+{% if book == "Евгений Онегин" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Евгений Онегин
+{% endif %}
+{% if book == "Ревизор" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Ревизор
+{% endif %}
+    {% if book == "Горе от ума" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Горе от ума
+{% endif %}
+    {% if book == "Старик и море" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Старик и море
+{% endif %}
+    {% if book == "Герой нашего времени" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Герой нашего времени
+{% endif %}
+    {% if book == "Сон в летнюю ночь" %}
+<div class="alert alert-primary" role="alert">
+            Заметка к книге Сон в летнюю ночь
+{% endif %}
+</div>
+    <h1>Добавление заметки</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title }}<br>
+            {% for error in form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+
+        </p>
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content }}<br>
+            {% for error in form.content.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

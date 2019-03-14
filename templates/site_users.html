@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div>
+  <table border="1" width="100%" cellpadding="5" >
+
+       <th>ID</th>
+      <th>USERNAME</th>
+      <th>PASSWORD</th>
+      <th>Количество заметок</th>
+
+    {% for id, user_name, password, count in users%}
+      <tr>
+          <th>{{id}}</th>
+          <th>{{user_name}}</th>
+          <th>{{password}}</th>
+          <th>{{count}}</th>
+          {% if user_name in admins %}
+            <th style="color:red"> admin</th>
+          {% endif %}
+    </tr>
+
+    {% endfor %}
+       </table>
+    </div>
+      {% endblock %}
